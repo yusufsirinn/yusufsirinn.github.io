@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sirin Apps</title>
+  <meta name="description" content="Sirin Apps — independent mobile apps and games by Yusuf Şirin.">
+  <!-- Sayfa yalnızca Google Play kuruluş doğrulaması için var: adresi bilen
+       açabilir, arama motorları listelemez. Search Console doğrulaması
+       noindex'ten etkilenmez. -->
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --ink: #1d2733;
+      --soft: #5b6878;
+      --line: #e3e7ec;
+      --accent: #2f7de0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #12161c;
+        --card: #1b2129;
+        --ink: #eef2f6;
+        --soft: #9aa7b6;
+        --line: #2a323c;
+        --accent: #6aa8f5;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 56px 16px 40px; }
+    h1 { font-size: 2.2rem; letter-spacing: -0.02em; }
+    .lead { color: var(--soft); margin-top: 8px; font-size: 1.1rem; }
+    h2 { font-size: 1.1rem; margin: 44px 0 14px; color: var(--soft); font-weight: 600; }
+    .apps { display: grid; gap: 12px; }
+    .app {
+      display: flex; gap: 16px; align-items: center;
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 16px; padding: 14px;
+    }
+    .app img { width: 64px; height: 64px; border-radius: 14px; flex: none; }
+    .app h3 { font-size: 1.05rem; }
+    .app p { color: var(--soft); font-size: 0.95rem; }
+    .links { margin-top: 4px; display: flex; gap: 14px; flex-wrap: wrap; }
+    a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    .contact { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+    footer { margin-top: 48px; color: var(--soft); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Sirin Apps</h1>
+    <p class="lead">Independent mobile apps and games, designed and built by Yusuf Şirin.</p>
+
+    <h2>Apps</h2>
+    <div class="apps">
+      <div class="app">
+        <img src="icons/shapio.jpg" alt="Shapio icon">
+        <div>
+          <h3>Shapio: Shape Search Puzzle</h3>
+          <p>Find the hidden row of shapes on the board and trace it in one line.</p>
+          <div class="links"><a href="https://apps.apple.com/app/id6803520460">App Store</a></div>
+        </div>
+      </div>
+      <div class="app">
+        <img src="icons/sudoku.jpg" alt="Sudoku icon">
+        <div>
+          <h3>Sudoku: Hints &amp; Number Logic</h3>
+          <p>Classic sudoku with hints that teach the logic behind each move.</p>
+          <div class="links">
+            <a href="https://apps.apple.com/app/id6769049219">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.minimalsudoku.app">Google Play</a>
+          </div>
+        </div>
+      </div>
+      <div class="app">
+        <img src="icons/gungun.jpg" alt="Gün Gün icon">
+        <div>
+          <h3>Gün Gün — Countdown Days Until</h3>
+          <p>Count down the days to the moments that matter.</p>
+          <div class="links"><a href="https://apps.apple.com/app/id6791479855">App Store</a></div>
+        </div>
+      </div>
+      <div class="app">
+        <img src="icons/odak.jpg" alt="Odak icon">
+        <div>
+          <h3>Odak: Flip Clock</h3>
+          <p>A calm full-screen flip clock and focus timer.</p>
+          <div class="links"><a href="https://apps.apple.com/app/id6771885024">App Store</a></div>
+        </div>
+      </div>
+      <div class="app">
+        <img src="icons/unitfab.jpg" alt="UnitFab icon">
+        <div>
+          <h3>UnitFab: Handmade Cost &amp; Stock</h3>
+          <p>Cost, pricing and stock tracking for handmade products.</p>
+          <div class="links"><a href="https://apps.apple.com/app/id6766839274">App Store</a></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Contact</h2>
+    <div class="contact">
+      <p>Questions, support or feedback: <a href="mailto:yusufsirindev@icloud.com">yusufsirindev@icloud.com</a></p>
+    </div>
+
+    <footer>© 2026 Yusuf Şirin · Konya, Türkiye</footer>
+  </main>
+</body>
+</html>
