@@ -5,113 +5,502 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sirin Apps</title>
   <meta name="description" content="Sirin Apps — independent mobile apps and games by Yusuf Şirin.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c0f14" media="(prefers-color-scheme: dark)">
   <!-- Sayfa yalnızca Google Play kuruluş doğrulaması için var: adresi bilen
        açabilir, arama motorları listelemez. Search Console doğrulaması
        noindex'ten etkilenmez. -->
   <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232fa9e0'/%3E%3Cstop offset='1' stop-color='%23e05cb4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Ctext x='32' y='46' font-family='Helvetica,Arial,sans-serif' font-size='38' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+
   <style>
+    @font-face {
+      font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 400 800; font-display: swap;
+      src: url(fonts/bricolage-latin-ext.woff2) format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 400 800; font-display: swap;
+      src: url(fonts/bricolage-latin.woff2) format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
     :root {
-      --bg: #f6f7f9;
+      color-scheme: light dark;
+      --bg: #fbfaf8;
       --card: #ffffff;
-      --ink: #1d2733;
-      --soft: #5b6878;
-      --line: #e3e7ec;
-      --accent: #2f7de0;
+      --ink: #15191f;
+      --soft: #5d6673;
+      --line: rgba(21, 25, 31, .09);
+      --dot: rgba(21, 25, 31, .13);
+      --glow-a: rgba(47, 169, 224, .24);
+      --glow-b: rgba(240, 162, 127, .28);
+      --glow-c: rgba(224, 92, 180, .13);
+      --shadow: 21 25 31;
+      --radius: 28px;
+      --font: "Bricolage Grotesque", ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #12161c;
-        --card: #1b2129;
-        --ink: #eef2f6;
-        --soft: #9aa7b6;
-        --line: #2a323c;
-        --accent: #6aa8f5;
+        --bg: #0c0f14;
+        --card: #141922;
+        --ink: #f1f4f8;
+        --soft: #98a3b2;
+        --line: rgba(255, 255, 255, .09);
+        --dot: rgba(255, 255, 255, .11);
+        --glow-a: rgba(47, 169, 224, .22);
+        --glow-b: rgba(240, 162, 127, .14);
+        --glow-c: rgba(224, 92, 180, .16);
+        --shadow: 0 0 0;
       }
     }
+
     * { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
+      position: relative;
+      overflow-x: hidden;
       background: var(--bg);
       color: var(--ink);
-      font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font: 400 17px/1.55 var(--font);
+      -webkit-font-smoothing: antialiased;
     }
-    main { max-width: 760px; margin: 0 auto; padding: 56px 16px 40px; }
-    h1 { font-size: 2.2rem; letter-spacing: -0.02em; }
-    .lead { color: var(--soft); margin-top: 8px; font-size: 1.1rem; }
-    h2 { font-size: 1.1rem; margin: 44px 0 14px; color: var(--soft); font-weight: 600; }
-    .apps { display: grid; gap: 12px; }
-    .app {
-      display: flex; gap: 16px; align-items: center;
+    /* Arka plan: üstte renkli ışıma + silikleşen nokta ızgarası */
+    body::before {
+      content: ""; position: absolute; inset: 0 0 auto 0; height: 980px; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(56rem 36rem at 88% -8%, var(--glow-a), transparent 62%),
+        radial-gradient(48rem 34rem at -8% 6%, var(--glow-b), transparent 62%),
+        radial-gradient(40rem 28rem at 62% 70%, var(--glow-c), transparent 62%);
+    }
+    body::after {
+      content: ""; position: absolute; inset: 0 0 auto 0; height: 760px; z-index: -1; pointer-events: none;
+      background-image: radial-gradient(var(--dot) 1.2px, transparent 1.4px);
+      background-size: 24px 24px;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+              mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+    }
+
+    .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 3px solid #2fa9e0; outline-offset: 3px; border-radius: 12px; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    svg.i { width: 1.15em; height: 1.15em; flex: none; fill: currentColor; }
+
+    /* ───── Üst şerit ───── */
+    .top { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; font-weight: 700; font-size: 1.12rem; letter-spacing: -.01em; }
+    .mark {
+      width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center;
+      color: #fff; font-weight: 800; font-size: 1.3rem; line-height: 1;
+      background: linear-gradient(135deg, #2fa9e0, #e05cb4);
+      box-shadow: 0 6px 16px -4px rgba(47, 169, 224, .55);
+    }
+
+    .top-actions { display: flex; align-items: center; gap: 10px; }
+
+    /* ───── Dil anahtarı ───── */
+    .lang {
+      position: relative; display: inline-grid; grid-template-columns: 1fr 1fr;
+      padding: 3px; border-radius: 999px; background: var(--card); border: 1px solid var(--line);
+    }
+    .lang::before {
+      content: ""; position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px);
+      border-radius: 999px; background: var(--ink);
+      transition: transform .3s cubic-bezier(.3, 1.3, .5, 1);
+    }
+    html[data-lang="tr"] .lang::before { transform: translateX(100%); }
+    .lang button {
+      position: relative; z-index: 1; min-width: 42px; padding: 7px 12px;
+      border: 0; border-radius: 999px; background: none; cursor: pointer;
+      font: 700 .8rem/1 var(--font); letter-spacing: .06em; color: var(--soft);
+      transition: color .25s ease;
+    }
+    .lang button[aria-pressed="true"] { color: var(--bg); }
+    .lang button:not([aria-pressed="true"]):hover { color: var(--ink); }
+
+    /* ───── Düğmeler ───── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: .98rem;
+      border: 1px solid transparent; cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.primary { background: var(--ink); color: var(--bg); box-shadow: 0 10px 24px -10px rgb(var(--shadow) / .55); }
+    .btn.ghost { background: var(--card); border-color: var(--line); }
+    .btn.ghost:hover { box-shadow: 0 10px 24px -12px rgb(var(--shadow) / .35); }
+    .btn.small { padding: 9px 18px; font-size: .92rem; }
+
+    /* ───── Hero ───── */
+    .hero { display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 40px; padding: 48px 0 88px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px 7px 12px; border-radius: 999px;
       background: var(--card); border: 1px solid var(--line);
-      border-radius: 16px; padding: 14px;
+      font-size: .88rem; font-weight: 600; color: var(--soft);
     }
-    .app img { width: 64px; height: 64px; border-radius: 14px; flex: none; }
-    .app h3 { font-size: 1.05rem; }
-    .app p { color: var(--soft); font-size: 0.95rem; }
-    .links { margin-top: 4px; display: flex; gap: 14px; flex-wrap: wrap; }
-    a { color: var(--accent); text-decoration: none; font-weight: 500; }
-    a:hover { text-decoration: underline; }
-    .contact { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
-    footer { margin-top: 48px; color: var(--soft); font-size: 0.9rem; }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #36c98b; box-shadow: 0 0 0 4px rgba(54, 201, 139, .2); }
+    h1 {
+      margin-top: 22px;
+      font-size: clamp(2.7rem, 6.4vw, 4.7rem); font-weight: 800; line-height: 1.01; letter-spacing: -.038em;
+      text-wrap: balance;
+    }
+    h1 > span:first-child { display: block; }
+    html[lang="tr"] h1 { font-size: clamp(2.3rem, 5.2vw, 3.8rem); }
+    .grad {
+      background: linear-gradient(100deg, #2fa9e0 0%, #b865d6 52%, #f08a5d 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lead { margin-top: 22px; max-width: 34em; font-size: 1.2rem; line-height: 1.5; color: var(--soft); text-wrap: pretty; }
+    .cta { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Dağınık ikon kümesi */
+    .cluster { position: relative; width: min(100%, 460px); aspect-ratio: 1 / .96; margin-inline: auto; }
+    .cluster::before {
+      content: ""; position: absolute; inset: 6% 4%; border-radius: 50%; filter: blur(46px); opacity: .55;
+      background: conic-gradient(from 210deg, #2fa9e0, #e05cb4, #f7c9b0, #ffd36b, #2fa9e0);
+    }
+    .ico {
+      position: absolute; left: var(--x); top: var(--y); width: var(--s); aspect-ratio: 1;
+      border-radius: 22.37%; display: block;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .07), 0 22px 40px -14px rgb(var(--shadow) / .5);
+      transform: rotate(var(--r));
+      animation: float 7s ease-in-out var(--d, 0s) infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(var(--r)); }
+      50%      { transform: translateY(-12px) rotate(calc(var(--r) + 2deg)); }
+    }
+
+    /* ───── Bölüm başlığı ───── */
+    section { scroll-margin-top: 16px; }
+    .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 26px; }
+    h2 { font-size: clamp(1.8rem, 3.6vw, 2.4rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+    .count {
+      font-size: .9rem; font-weight: 700; color: var(--soft); padding: 2px 11px; border-radius: 999px;
+      background: var(--card); border: 1px solid var(--line);
+    }
+
+    /* ───── Uygulama kartları (bento) ───── */
+    .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+    .app {
+      --accent: #2fa9e0;
+      grid-column: span 2;
+      position: relative; overflow: hidden; isolation: isolate;
+      display: flex; flex-direction: column; gap: 18px;
+      padding: 26px; border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--line);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    @supports (background: color-mix(in srgb, red 10%, blue)) {
+      .app {
+        background: linear-gradient(155deg, color-mix(in srgb, var(--accent) 17%, var(--card)), var(--card) 68%);
+        border-color: color-mix(in srgb, var(--accent) 24%, var(--line));
+      }
+      .app::before { background: radial-gradient(circle, color-mix(in srgb, var(--accent) 42%, transparent), transparent 66%); }
+    }
+    .app::before {
+      content: ""; position: absolute; z-index: -1; width: 78%; aspect-ratio: 1; right: -24%; top: -34%;
+      background: radial-gradient(circle, rgba(47, 169, 224, .3), transparent 66%);
+      opacity: .55; transition: opacity .4s ease, transform .5s ease;
+    }
+    .app:hover { transform: translateY(-5px); box-shadow: 0 28px 50px -26px rgb(var(--shadow) / .5); }
+    .app:hover::before { opacity: 1; transform: scale(1.12); }
+    .app.feature { grid-column: span 3; }
+
+    .app-icon {
+      width: 84px; height: 84px; border-radius: 22.37%; flex: none; display: block;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .07), 0 14px 26px -12px rgb(var(--shadow) / .55);
+      transition: transform .35s cubic-bezier(.3, 1.6, .5, 1);
+    }
+    .app:hover .app-icon { transform: rotate(-4deg) scale(1.06); }
+    .app.feature .app-icon { width: 108px; height: 108px; }
+
+    .app h3 { font-size: 1.55rem; font-weight: 800; letter-spacing: -.028em; line-height: 1.12; }
+    .app h3 .sub { display: block; margin-top: 4px; font-size: 1rem; font-weight: 500; letter-spacing: -.005em; color: var(--soft); }
+    .app p { color: var(--soft); font-size: 1rem; line-height: 1.5; text-wrap: pretty; }
+    .stores { margin-top: auto; padding-top: 4px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .store {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 11px 15px 11px 19px; border-radius: 999px;
+      background: var(--ink); color: var(--bg); font-weight: 600; font-size: .94rem; line-height: 1;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .store:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgb(var(--shadow) / .6); }
+    .store svg.i { width: 1.15em; height: 1.15em; opacity: .7; transition: transform .18s ease, opacity .18s ease; }
+    .store:hover svg.i { transform: translate(2px, -2px); opacity: 1; }
+
+    .app .body { display: flex; flex-direction: column; gap: 12px; }
+    @media (min-width: 900px) {
+      .app.feature { flex-direction: row; align-items: flex-start; gap: 24px; }
+      .app.feature .body { flex: 1; align-self: stretch; }
+    }
+
+    /* ───── İletişim ───── */
+    #contact { padding: 88px 0 72px; }
+    .contact {
+      position: relative; overflow: hidden; isolation: isolate;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 38px; border-radius: 34px; background: var(--ink); color: var(--bg);
+    }
+    .contact::before {
+      content: ""; position: absolute; z-index: -1; inset: -40% -10% auto auto; width: 60%; aspect-ratio: 1;
+      background: radial-gradient(circle, rgba(47, 169, 224, .55), transparent 62%);
+    }
+    .contact::after {
+      content: ""; position: absolute; z-index: -1; inset: auto auto -50% -8%; width: 50%; aspect-ratio: 1;
+      background: radial-gradient(circle, rgba(224, 92, 180, .4), transparent 62%);
+    }
+    .contact h2 { font-size: clamp(1.6rem, 3.2vw, 2.1rem); }
+    .contact p { margin-top: 8px; opacity: .72; }
+    .contact .btn { background: var(--bg); color: var(--ink); }
+
+    footer .legal { margin-top: 6px; font-size: .82rem; opacity: .8; max-width: 52em; }
+    footer { padding: 26px 0 44px; border-top: 1px solid var(--line); color: var(--soft); font-size: .92rem; }
+
+    /* ───── Dil değişim geçişi ───── */
+    main, footer { transition: opacity .14s ease; }
+    html.switching main, html.switching footer { opacity: 0; }
+
+    /* ───── Açılış animasyonu ───── */
+    @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+    .rise { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i, 0) * 80ms); }
+
+    /* ───── Küçük ekranlar ───── */
+    @media (max-width: 899px) {
+      .hero { grid-template-columns: 1fr; gap: 28px; padding: 28px 0 64px; }
+      .cluster { width: min(100%, 380px); }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .app, .app.feature { grid-column: span 1; }
+      .app:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    }
+    @media (max-width: 599px) {
+      body { font-size: 16px; }
+      .grid { grid-template-columns: 1fr; }
+      .app:last-child:nth-child(odd) { grid-column: auto; }
+      .app { padding: 22px; }
+      .contact { padding: 28px 24px; border-radius: 28px; }
+      .top-actions { gap: 8px; }
+      .lang button { min-width: 38px; padding: 7px 10px; }
+      #contact { padding: 64px 0 52px; }
+    }
+    @media (max-width: 380px) {
+      .top-actions .btn { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ico, .rise { animation: none; }
+      .app, .app::before, .app-icon, .btn, .store, .lang::before, main, footer { transition: none; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Sirin Apps</h1>
-    <p class="lead">Independent mobile apps and games, designed and built by Yusuf Şirin.</p>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M8 6h10v10h-2V9.41l-9.3 9.3-1.42-1.42L14.59 8H8V6z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2 7.4 5.6L19.4 7H4.6z"/></symbol>
+  </svg>
 
-    <h2>Apps</h2>
-    <div class="apps">
-      <div class="app">
-        <img src="icons/shapio.jpg" alt="Shapio icon">
-        <div>
-          <h3>Shapio: Shape Search Puzzle</h3>
-          <p>Find the hidden row of shapes on the board and trace it in one line.</p>
-          <div class="links"><a href="https://apps.apple.com/app/id6803520460">App Store</a></div>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="#top" aria-label="Sirin Apps"><span class="mark" aria-hidden="true">S</span>Sirin Apps</a>
+      <div class="top-actions">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+          <button type="button" data-lang="tr" lang="tr" aria-label="Türkçe" aria-pressed="false">TR</button>
         </div>
+        <a class="btn ghost small" href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
-      <div class="app">
-        <img src="icons/sudoku.jpg" alt="Sudoku icon">
+    </header>
+
+    <main id="top">
+      <section class="hero">
         <div>
-          <h3>Sudoku: Hints &amp; Number Logic</h3>
-          <p>Classic sudoku with hints that teach the logic behind each move.</p>
-          <div class="links">
-            <a href="https://apps.apple.com/app/id6769049219">App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.minimalsudoku.app">Google Play</a>
+          <p class="eyebrow rise" style="--i:0" data-i18n="hero.eyebrow">Puzzles · Timers · Everyday tools</p>
+          <h1 class="rise" style="--i:1"><span data-i18n="hero.h1a">Thoughtfully designed apps</span> <span class="grad" data-i18n="hero.h1b">for everyday life.</span></h1>
+          <p class="lead rise" style="--i:2" data-i18n="hero.lead">Independent mobile apps and games, designed and built by Yusuf Şirin.</p>
+          <div class="cta rise" style="--i:3">
+            <a class="btn primary" href="#apps" data-i18n="hero.cta1">See the apps</a>
+            <a class="btn ghost" href="#contact" data-i18n="hero.cta2">Get in touch</a>
           </div>
         </div>
-      </div>
-      <div class="app">
-        <img src="icons/gungun.jpg" alt="Gün Gün icon">
-        <div>
-          <h3>Gün Gün — Countdown Days Until</h3>
-          <p>Count down the days to the moments that matter.</p>
-          <div class="links"><a href="https://apps.apple.com/app/id6791479855">App Store</a></div>
-        </div>
-      </div>
-      <div class="app">
-        <img src="icons/odak.jpg" alt="Odak icon">
-        <div>
-          <h3>Odak: Flip Clock</h3>
-          <p>A calm full-screen flip clock and focus timer.</p>
-          <div class="links"><a href="https://apps.apple.com/app/id6771885024">App Store</a></div>
-        </div>
-      </div>
-      <div class="app">
-        <img src="icons/unitfab.jpg" alt="UnitFab icon">
-        <div>
-          <h3>UnitFab: Handmade Cost &amp; Stock</h3>
-          <p>Cost, pricing and stock tracking for handmade products.</p>
-          <div class="links"><a href="https://apps.apple.com/app/id6766839274">App Store</a></div>
-        </div>
-      </div>
-    </div>
 
-    <h2>Contact</h2>
-    <div class="contact">
-      <p>Questions, support or feedback: <a href="mailto:yusufsirindev@icloud.com">yusufsirindev@icloud.com</a></p>
-    </div>
+        <div class="cluster rise" style="--i:2" aria-hidden="true">
+          <img class="ico" style="--x:5%;  --y:9%;  --s:35%; --r:-8deg; --d:-1s"   src="icons/shapio.webp"  alt="">
+          <img class="ico" style="--x:60%; --y:0%;  --s:29%; --r:7deg;  --d:-3.5s" src="icons/sudoku.webp"  alt="">
+          <img class="ico" style="--x:33%; --y:35%; --s:33%; --r:3deg;  --d:-2s"   src="icons/gungun.webp"  alt="">
+          <img class="ico" style="--x:3%;  --y:63%; --s:27%; --r:8deg;  --d:-4.5s" src="icons/odak.webp"    alt="">
+          <img class="ico" style="--x:66%; --y:57%; --s:30%; --r:-6deg; --d:-5.5s" src="icons/unitfab.webp" alt="">
+        </div>
+      </section>
 
-    <footer>© 2026 Yusuf Şirin · Konya, Türkiye</footer>
-  </main>
+      <section id="apps">
+        <div class="sec-head"><h2 data-i18n="apps.title">Apps</h2><span class="count">5</span></div>
+
+        <div class="grid">
+          <article class="app feature rise" style="--accent:#2fa9e0; --i:4">
+            <img class="app-icon" src="icons/shapio.webp" width="108" height="108" alt="Shapio icon" data-app="Shapio">
+            <div class="body">
+              <h3>Shapio<span class="sr">: </span><span class="sub" data-i18n="shapio.sub">Pattern Logic Puzzle</span></h3>
+              <p data-i18n="shapio.desc">Find the hidden row of shapes on the board and trace it in one line.</p>
+              <div class="stores">
+                <a class="store" href="https://apps.apple.com/app/id6803520460" aria-label="Shapio on the App Store" data-app="Shapio" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="store" href="https://play.google.com/store/apps/details?id=com.shapio.app" aria-label="Shapio on Google Play" data-app="Shapio" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="app feature rise" style="--accent:#f5c518; --i:5">
+            <img class="app-icon" src="icons/sudoku.webp" width="108" height="108" alt="Sudoku icon" data-app="Sudoku">
+            <div class="body">
+              <h3>Sudoku<span class="sr">: </span><span class="sub" data-i18n="sudoku.sub">Hints &amp; Number Logic</span></h3>
+              <p data-i18n="sudoku.desc">Classic sudoku with hints that teach the logic behind each move.</p>
+              <div class="stores">
+                <a class="store" href="https://apps.apple.com/app/id6769049219" aria-label="Sudoku on the App Store" data-app="Sudoku" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="store" href="https://play.google.com/store/apps/details?id=com.minimalsudoku.app" aria-label="Sudoku on Google Play" data-app="Sudoku" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="app rise" style="--accent:#f0a27f; --i:6">
+            <img class="app-icon" src="icons/gungun.webp" width="84" height="84" alt="Gün Gün icon" data-app="Gün Gün">
+            <div class="body">
+              <h3>Gün Gün<span class="sr"> — </span><span class="sub" data-i18n="gungun.sub">Countdown Days Until</span></h3>
+            </div>
+            <p data-i18n="gungun.desc">Count down the days to the moments that matter.</p>
+            <div class="stores">
+              <a class="store" href="https://apps.apple.com/app/id6791479855" aria-label="Gün Gün on the App Store" data-app="Gün Gün" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <article class="app rise" style="--accent:#8f96b8; --i:7">
+            <img class="app-icon" src="icons/odak.webp" width="84" height="84" alt="Odak icon" data-app="Odak">
+            <div class="body">
+              <h3>Odak<span class="sr">: </span><span class="sub" data-i18n="odak.sub">Flip Clock</span></h3>
+            </div>
+            <p data-i18n="odak.desc">A calm full-screen flip clock and focus timer.</p>
+            <div class="stores">
+              <a class="store" href="https://apps.apple.com/app/id6771885024" aria-label="Odak on the App Store" data-app="Odak" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <article class="app rise" style="--accent:#c59a6a; --i:8">
+            <img class="app-icon" src="icons/unitfab.webp" width="84" height="84" alt="UnitFab icon" data-app="UnitFab">
+            <div class="body">
+              <h3>UnitFab<span class="sr">: </span><span class="sub" data-i18n="unitfab.sub">Handmade Cost &amp; Stock</span></h3>
+            </div>
+            <p data-i18n="unitfab.desc">Cost, pricing and stock tracking for handmade products.</p>
+            <div class="stores">
+              <a class="store" href="https://apps.apple.com/app/id6766839274" aria-label="UnitFab on the App Store" data-app="UnitFab" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact">
+          <div>
+            <h2 data-i18n="contact.title">Questions, support or feedback?</h2>
+            <p data-i18n="contact.text">Write to me — I'm happy to help.</p>
+          </div>
+          <a class="btn" href="mailto:yusufsirindev@icloud.com"><svg class="i"><use href="#i-mail"/></svg>yusufsirindev@icloud.com</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Yusuf Şirin · Türkiye</p>
+      <p class="legal" data-i18n="footer.legal">App Store is a service mark of Apple Inc. Google Play is a trademark of Google LLC. Sirin Apps is not affiliated with or endorsed by Apple or Google.</p>
+    </footer>
+  </div>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var STORAGE_KEY = 'sirin-lang';
+
+      var tr = {
+        'nav.contact': 'İletişim',
+        'hero.eyebrow': 'Bulmacalar · Zamanlayıcılar · Günlük araçlar',
+        'hero.h1a': 'Gündelik hayat için',
+        'hero.h1b': 'özenle tasarlanmış uygulamalar.',
+        'hero.lead': 'Yusuf Şirin tarafından tasarlanıp geliştirilen bağımsız mobil uygulamalar ve oyunlar.',
+        'hero.cta1': 'Uygulamalara göz at',
+        'hero.cta2': 'İletişime geç',
+        'apps.title': 'Uygulamalar',
+        'shapio.sub': 'Zeka & Mantık Bulmaca',
+        'shapio.desc': 'Tahtada saklanan şekil dizisini bul ve parmağını kaydırarak tek çizgide işaretle.',
+        'sudoku.sub': 'İpucu & Sayı Mantığı',
+        'sudoku.desc': 'Her hamlenin ardındaki mantığı öğreten ipuçlarıyla klasik sudoku.',
+        'gungun.sub': 'Kaç Gün Kaldı?',
+        'gungun.desc': 'Önemli anlara kalan günleri geri sayın.',
+        'odak.sub': 'Flip Clock',
+        'odak.desc': 'Sakin, tam ekran bir flip saat ve odaklanma zamanlayıcısı.',
+        'unitfab.sub': 'Atölye Stok Takip',
+        'unitfab.desc': 'El emeği ürünler için maliyet, fiyatlandırma ve stok takibi.',
+        'contact.title': 'Soru, destek ya da geri bildirim?',
+        'contact.text': 'Bana yazın, yardımcı olmaktan memnuniyet duyarım.',
+        'footer.legal': "App Store, Apple Inc.'in hizmet markasıdır. Google Play, Google LLC'nin ticari markasıdır. Sirin Apps, Apple veya Google ile bağlantılı değildir ve bunlar tarafından onaylanmamıştır."
+      };
+      var aria = {
+        en: { appstore: function (n) { return n + ' on the App Store'; }, play: function (n) { return n + ' on Google Play'; }, alt: function (n) { return n + ' icon'; } },
+        tr: { appstore: function (n) { return n + " — App Store'da"; }, play: function (n) { return n + " — Google Play'de"; }, alt: function (n) { return n + ' ikonu'; } }
+      };
+      var metaDesc = {
+        en: 'Sirin Apps — independent mobile apps and games by Yusuf Şirin.',
+        tr: "Sirin Apps — Yusuf Şirin'in bağımsız mobil uygulamaları ve oyunları."
+      };
+
+      var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-i18n]'));
+      nodes.forEach(function (el) { el.setAttribute('data-en', el.innerHTML); });
+      var desc = document.querySelector('meta[name="description"]');
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.lang button'));
+
+      function read(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+      function write(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
+
+      function initial() {
+        var q = /[?&]lang=(en|tr)\b/.exec(location.search);
+        if (q) return q[1];
+        var saved = read(STORAGE_KEY);
+        if (saved === 'en' || saved === 'tr') return saved;
+        var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+        return /^tr\b/i.test(nav) ? 'tr' : 'en';
+      }
+
+      function apply(lang) {
+        root.lang = lang;
+        root.setAttribute('data-lang', lang);
+        nodes.forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          el.innerHTML = lang === 'tr' && tr[key] ? tr[key] : el.getAttribute('data-en');
+        });
+        document.querySelectorAll('a[data-store]').forEach(function (a) {
+          a.setAttribute('aria-label', aria[lang][a.getAttribute('data-store')](a.getAttribute('data-app')));
+        });
+        document.querySelectorAll('img[data-app]').forEach(function (img) {
+          img.setAttribute('alt', aria[lang].alt(img.getAttribute('data-app')));
+        });
+        if (desc) desc.setAttribute('content', metaDesc[lang]);
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
+      }
+
+      function setLang(lang, animate) {
+        if (lang === root.getAttribute('data-lang')) return;
+        write(STORAGE_KEY, lang);
+        try { history.replaceState(null, '', '?lang=' + lang + location.hash); } catch (e) {}
+        var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!animate || reduce) { apply(lang); return; }
+        root.classList.add('switching');
+        setTimeout(function () { apply(lang); root.classList.remove('switching'); }, 150);
+      }
+
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () { setLang(b.getAttribute('data-lang'), true); });
+      });
+      apply(initial());
+    })();
+  </script>
 </body>
 </html>
