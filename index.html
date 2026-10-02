@@ -187,7 +187,7 @@
     .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
     .app {
       --accent: #2fa9e0;
-      grid-column: span 2;
+      grid-column: span 3;
       position: relative; overflow: hidden; isolation: isolate;
       display: flex; flex-direction: column; gap: 18px;
       padding: 26px; border-radius: var(--radius);
@@ -209,15 +209,13 @@
     }
     .app:hover { transform: translateY(-5px); box-shadow: 0 28px 50px -26px rgb(var(--shadow) / .5); }
     .app:hover::before { opacity: 1; transform: scale(1.12); }
-    .app.feature { grid-column: span 3; }
 
     .app-icon {
-      width: 84px; height: 84px; border-radius: 22.37%; flex: none; display: block;
+      width: 108px; height: 108px; border-radius: 22.37%; flex: none; display: block;
       box-shadow: 0 0 0 1px rgba(0, 0, 0, .07), 0 14px 26px -12px rgb(var(--shadow) / .55);
       transition: transform .35s cubic-bezier(.3, 1.6, .5, 1);
     }
     .app:hover .app-icon { transform: rotate(-4deg) scale(1.06); }
-    .app.feature .app-icon { width: 108px; height: 108px; }
 
     .app h3 { font-size: 1.55rem; font-weight: 800; letter-spacing: -.028em; line-height: 1.12; }
     .app h3 .sub { display: block; margin-top: 4px; font-size: 1rem; font-weight: 500; letter-spacing: -.005em; color: var(--soft); }
@@ -235,8 +233,8 @@
 
     .app .body { display: flex; flex-direction: column; gap: 12px; }
     @media (min-width: 900px) {
-      .app.feature { flex-direction: row; align-items: flex-start; gap: 24px; }
-      .app.feature .body { flex: 1; align-self: stretch; }
+      .app { flex-direction: row; align-items: flex-start; gap: 24px; }
+      .app .body { flex: 1; align-self: stretch; }
     }
 
     /* ───── İletişim ───── */
@@ -274,7 +272,7 @@
       .hero { grid-template-columns: 1fr; gap: 28px; padding: 28px 0 64px; }
       .cluster { width: min(100%, 380px); }
       .grid { grid-template-columns: repeat(2, 1fr); }
-      .app, .app.feature { grid-column: span 1; }
+      .app { grid-column: span 1; }
       .app:last-child:nth-child(odd) { grid-column: 1 / -1; }
     }
     @media (max-width: 599px) {
@@ -328,19 +326,20 @@
         </div>
 
         <div class="cluster rise" style="--i:2" aria-hidden="true">
-          <img class="ico" style="--x:5%;  --y:9%;  --s:35%; --r:-8deg; --d:-1s"   src="icons/shapio.webp"  alt="">
-          <img class="ico" style="--x:60%; --y:0%;  --s:29%; --r:7deg;  --d:-3.5s" src="icons/sudoku.webp"  alt="">
-          <img class="ico" style="--x:33%; --y:35%; --s:33%; --r:3deg;  --d:-2s"   src="icons/gungun.webp"  alt="">
-          <img class="ico" style="--x:3%;  --y:63%; --s:27%; --r:8deg;  --d:-4.5s" src="icons/odak.webp"    alt="">
-          <img class="ico" style="--x:66%; --y:57%; --s:30%; --r:-6deg; --d:-5.5s" src="icons/unitfab.webp" alt="">
+          <img class="ico" style="--x:3%;  --y:10%; --s:31%; --r:-8deg; --d:-1s"   src="icons/shapio.webp"  alt="">
+          <img class="ico" style="--x:37%; --y:0%;  --s:27%; --r:5deg;  --d:-6.5s" src="icons/miralo.webp"  alt="">
+          <img class="ico" style="--x:70%; --y:8%;  --s:27%; --r:8deg;  --d:-3.5s" src="icons/sudoku.webp"  alt="">
+          <img class="ico" style="--x:30%; --y:40%; --s:32%; --r:3deg;  --d:-2s"   src="icons/gungun.webp"  alt="">
+          <img class="ico" style="--x:2%;  --y:64%; --s:26%; --r:7deg;  --d:-4.5s" src="icons/odak.webp"    alt="">
+          <img class="ico" style="--x:66%; --y:55%; --s:29%; --r:-6deg; --d:-5.5s" src="icons/unitfab.webp" alt="">
         </div>
       </section>
 
       <section id="apps">
-        <div class="sec-head"><h2 data-i18n="apps.title">Apps</h2><span class="count">5</span></div>
+        <div class="sec-head"><h2 data-i18n="apps.title">Apps</h2><span class="count">6</span></div>
 
         <div class="grid">
-          <article class="app feature rise" style="--accent:#2fa9e0; --i:4">
+          <article class="app rise" style="--accent:#2fa9e0; --i:4">
             <img class="app-icon" src="icons/shapio.webp" width="108" height="108" alt="Shapio icon" data-app="Shapio">
             <div class="body">
               <h3>Shapio<span class="sr">: </span><span class="sub" data-i18n="shapio.sub">Pattern Logic Puzzle</span></h3>
@@ -352,7 +351,7 @@
             </div>
           </article>
 
-          <article class="app feature rise" style="--accent:#f5c518; --i:5">
+          <article class="app rise" style="--accent:#f5c518; --i:5">
             <img class="app-icon" src="icons/sudoku.webp" width="108" height="108" alt="Sudoku icon" data-app="Sudoku">
             <div class="body">
               <h3>Sudoku<span class="sr">: </span><span class="sub" data-i18n="sudoku.sub">Hints &amp; Number Logic</span></h3>
@@ -365,35 +364,48 @@
           </article>
 
           <article class="app rise" style="--accent:#f0a27f; --i:6">
-            <img class="app-icon" src="icons/gungun.webp" width="84" height="84" alt="Gün Gün icon" data-app="Gün Gün">
+            <img class="app-icon" src="icons/gungun.webp" width="108" height="108" alt="Gün Gün icon" data-app="Gün Gün">
             <div class="body">
               <h3>Gün Gün<span class="sr"> — </span><span class="sub" data-i18n="gungun.sub">Countdown Days Until</span></h3>
-            </div>
-            <p data-i18n="gungun.desc">Count down the days to the moments that matter.</p>
-            <div class="stores">
-              <a class="store" href="https://apps.apple.com/app/id6791479855" aria-label="Gün Gün on the App Store" data-app="Gün Gün" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <p data-i18n="gungun.desc">Count down the days to the moments that matter.</p>
+              <div class="stores">
+                <a class="store" href="https://apps.apple.com/app/id6791479855" aria-label="Gün Gün on the App Store" data-app="Gün Gün" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="store" href="https://play.google.com/store/apps/details?id=app.gungun" aria-label="Gün Gün on Google Play" data-app="Gün Gün" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
             </div>
           </article>
 
           <article class="app rise" style="--accent:#8f96b8; --i:7">
-            <img class="app-icon" src="icons/odak.webp" width="84" height="84" alt="Odak icon" data-app="Odak">
+            <img class="app-icon" src="icons/odak.webp" width="108" height="108" alt="Odak icon" data-app="Odak">
             <div class="body">
               <h3>Odak<span class="sr">: </span><span class="sub" data-i18n="odak.sub">Flip Clock</span></h3>
-            </div>
-            <p data-i18n="odak.desc">A calm full-screen flip clock and focus timer.</p>
-            <div class="stores">
-              <a class="store" href="https://apps.apple.com/app/id6771885024" aria-label="Odak on the App Store" data-app="Odak" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <p data-i18n="odak.desc">A calm full-screen flip clock and focus timer.</p>
+              <div class="stores">
+                <a class="store" href="https://apps.apple.com/app/id6771885024" aria-label="Odak on the App Store" data-app="Odak" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="store" href="https://play.google.com/store/apps/details?id=com.odakapp.timer" aria-label="Odak on Google Play" data-app="Odak" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
             </div>
           </article>
 
           <article class="app rise" style="--accent:#c59a6a; --i:8">
-            <img class="app-icon" src="icons/unitfab.webp" width="84" height="84" alt="UnitFab icon" data-app="UnitFab">
+            <img class="app-icon" src="icons/unitfab.webp" width="108" height="108" alt="UnitFab icon" data-app="UnitFab">
             <div class="body">
               <h3>UnitFab<span class="sr">: </span><span class="sub" data-i18n="unitfab.sub">Handmade Cost &amp; Stock</span></h3>
+              <p data-i18n="unitfab.desc">Cost, pricing and stock tracking for handmade products.</p>
+              <div class="stores">
+                <a class="store" href="https://apps.apple.com/app/id6766839274" aria-label="UnitFab on the App Store" data-app="UnitFab" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
             </div>
-            <p data-i18n="unitfab.desc">Cost, pricing and stock tracking for handmade products.</p>
-            <div class="stores">
-              <a class="store" href="https://apps.apple.com/app/id6766839274" aria-label="UnitFab on the App Store" data-app="UnitFab" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+
+          <article class="app rise" style="--accent:#35b6a4; --i:9">
+            <img class="app-icon" src="icons/miralo.webp" width="108" height="108" alt="Miralo icon" data-app="Miralo">
+            <div class="body">
+              <h3>Miralo<span class="sr">: </span><span class="sub" data-i18n="miralo.sub">Vision Board Maker</span></h3>
+              <p data-i18n="miralo.desc">Create photo collages and vision boards, then use them as a wallpaper or widget.</p>
+              <div class="stores">
+                <a class="store" href="https://play.google.com/store/apps/details?id=com.miralo.app" aria-label="Miralo on Google Play" data-app="Miralo" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
             </div>
           </article>
         </div>
@@ -439,6 +451,8 @@
         'odak.desc': 'Sakin, tam ekran bir flip saat ve odaklanma zamanlayıcısı.',
         'unitfab.sub': 'Atölye Stok Takip',
         'unitfab.desc': 'El emeği ürünler için maliyet, fiyatlandırma ve stok takibi.',
+        'miralo.sub': 'Vizyon Panosu & Kolaj',
+        'miralo.desc': 'Fotoğraf kolajları ve vizyon panoları oluştur, duvar kâğıdı ya da widget olarak kullan.',
         'contact.title': 'Soru, destek ya da geri bildirim?',
         'contact.text': 'Bana yazın, yardımcı olmaktan memnuniyet duyarım.',
         'footer.legal': "App Store, Apple Inc.'in hizmet markasıdır. Google Play, Google LLC'nin ticari markasıdır. Sirin Apps, Apple veya Google ile bağlantılı değildir ve bunlar tarafından onaylanmamıştır."
