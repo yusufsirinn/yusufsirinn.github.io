@@ -167,14 +167,17 @@ ICONS = {
   "i-strip": '<rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M7 8h10M7 12.5h10M7 17h10"/>',
 }
 PATTERNS = {
-  "p-shapio": '<circle cx="34" cy="36" r="15"/><path d="M82 20l22 38H60z"/><rect x="40" y="76" width="36" height="30" rx="8"/><path d="M34 51v25M70 58l-12 18" stroke-dasharray="3 6"/>',
-  "p-sudoku": '<rect x="18" y="18" width="84" height="84" rx="10"/><path d="M46 18v84M74 18v84M18 46h84M18 74h84"/><circle cx="60" cy="60" r="9"/>',
-  "p-novaday": '<path d="M104 80V44a18 18 0 0 0-18-18H34a18 18 0 0 0-18 18v42a18 18 0 0 0 18 18h38"/><path d="M104 80H90a10 10 0 0 0-10 10v14M104 80L80 104"/><path d="M42 18v16M78 18v16"/><circle cx="52" cy="54" r="7.5"/><circle cx="52" cy="76" r="10.5"/><path d="M92 50c0-8 4-13 12-14 0 8-4 13-12 14zM92 50v-8"/>',
-  "p-odak": '<circle cx="60" cy="60" r="44"/><circle cx="60" cy="60" r="30" stroke-dasharray="2 7"/><path d="M60 60V34M60 60l20 12M60 12v8M60 100v8M12 60h8M100 60h8"/>',
-  "p-unitfab": '<path d="M60 14l42 21v50L60 106 18 85V35zM18 35l42 21 42-21M60 56v50"/><path d="M38 24l42 21" stroke-dasharray="3 6"/>',
-  "p-miralo": '<rect x="14" y="22" width="48" height="38" rx="8"/><rect x="70" y="14" width="36" height="54" rx="8"/><rect x="22" y="68" width="32" height="34" rx="8"/><rect x="62" y="76" width="44" height="26" rx="8"/><circle cx="38" cy="41" r="6"/>',
-  "p-collagist": '<rect x="38" y="8" width="44" height="104" rx="8"/><rect x="46" y="16" width="28" height="20" rx="4"/><rect x="46" y="42" width="28" height="20" rx="4"/><rect x="46" y="68" width="28" height="20" rx="4"/><rect x="46" y="94" width="28" height="12" rx="4"/>',
+  "p-shapio": '<circle class="m1" cx="34" cy="36" r="15"/><path class="m2" d="M82 20l22 38H60z"/><rect class="m3" x="40" y="76" width="36" height="30" rx="8"/><path d="M34 51v25M70 58l-12 18" stroke-dasharray="3 6"/>',
+  "p-sudoku": '<rect x="18" y="18" width="84" height="84" rx="10"/><path d="M46 18v84M74 18v84M18 46h84M18 74h84"/><circle class="m1" cx="60" cy="60" r="9"/>',
+  "p-novaday": '<path d="M104 80V44a18 18 0 0 0-18-18H34a18 18 0 0 0-18 18v42a18 18 0 0 0 18 18h38"/><path d="M104 80H90a10 10 0 0 0-10 10v14M104 80L80 104"/><path class="m1" d="M42 18v16M78 18v16"/><circle cx="52" cy="54" r="7.5"/><circle cx="52" cy="76" r="10.5"/><path class="m2" d="M92 50c0-8 4-13 12-14 0 8-4 13-12 14zM92 50v-8"/>',
+  "p-odak": '<circle cx="60" cy="60" r="44"/><circle cx="60" cy="60" r="30" stroke-dasharray="2 7"/><path class="m1" d="M60 60V34"/><path class="m2" d="M60 60l20 12"/><path d="M60 12v8M60 100v8M12 60h8M100 60h8"/>',
+  "p-unitfab": '<path class="m2" d="M60 14l42 21v50L60 106 18 85V35zM18 35l42 21 42-21M60 56v50"/><path class="m1" d="M38 24l42 21" stroke-dasharray="3 6"/>',
+  "p-miralo": '<rect class="m1" x="14" y="22" width="48" height="38" rx="8"/><rect class="m2" x="70" y="14" width="36" height="54" rx="8"/><rect class="m3" x="22" y="68" width="32" height="34" rx="8"/><rect class="m4" x="62" y="76" width="44" height="26" rx="8"/><circle cx="38" cy="41" r="6"/>',
+  "p-collagist": '<rect x="38" y="8" width="44" height="104" rx="8"/><rect class="m1" x="46" y="16" width="28" height="20" rx="4"/><rect class="m2" x="46" y="42" width="28" height="20" rx="4"/><rect class="m3" x="46" y="68" width="28" height="20" rx="4"/><rect class="m4" x="46" y="94" width="28" height="12" rx="4"/>',
 }
+
+def pat_svg(app):
+    return f'<svg class="pat {app["pat"]}" viewBox="0 0 120 120" aria-hidden="true">{PATTERNS[app["pat"]]}</svg>'
 
 def sprite():
     s = '  <!--sprite-->\n  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">\n'
@@ -182,8 +185,6 @@ def sprite():
     s += '    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2 7.4 5.6L19.4 7H4.6z"/></symbol>\n'
     for k, v in ICONS.items():
         s += sym(k, "0 0 24 24", v)
-    for k, v in PATTERNS.items():
-        s += sym(k, "0 0 120 120", v)
     s += '  </svg>\n  <!--/sprite-->'
     return s
 
@@ -202,8 +203,8 @@ def store_links(app, cls="store"):
 
 def card(app, i):
     n = app["name"]
-    return f'''          <article class="app rise" style="--accent:{app["accent"]}; --i:{4 + i}">
-            <svg class="pat" aria-hidden="true"><use href="#{app["pat"]}"/></svg>
+    return f'''          <article class="app rise" id="{app["slug"]}" style="--accent:{app["accent"]}; --i:{4 + i}">
+            {pat_svg(app)}
             <a href="{app["slug"]}/" tabindex="-1" aria-hidden="true"><img class="app-icon" src="icons/{app["slug"]}.webp" width="108" height="108" alt="{n} icon" data-app="{n}"></a>
             <div class="body">
               <h3>{n}<span class="sr">: </span><span class="sub" data-i18n="{app["slug"]}.sub">{E(app["sub"][0])}</span></h3>
@@ -304,7 +305,7 @@ def page(app):
       <a class="crumb" href="../#apps"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg><span data-i18n="page.back">All apps</span></a>
 
       <section class="page-hero rise" style="--accent:{app["accent"]}">
-        <svg class="pat" aria-hidden="true"><use href="#{app["pat"]}"/></svg>
+        {pat_svg(app)}
         <img class="app-icon" src="../icons/{slug}.webp" width="168" height="168" alt="{n} icon" data-app="{n}">
         <div>
           <h1>{n}<span class="sr">: </span><span class="sub" data-i18n="{slug}.sub">{E(app["sub"][0])}</span></h1>
