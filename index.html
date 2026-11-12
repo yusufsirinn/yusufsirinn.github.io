@@ -188,6 +188,9 @@
     .app {
       --accent: #2fa9e0;
       grid-column: span 3;
+    }
+    .app:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .app {
       position: relative; overflow: hidden; isolation: isolate;
       display: flex; flex-direction: column; gap: 18px;
       padding: 26px; border-radius: var(--radius);
@@ -329,14 +332,15 @@
           <img class="ico" style="--x:3%;  --y:10%; --s:31%; --r:-8deg; --d:-1s"   src="icons/shapio.webp"  alt="">
           <img class="ico" style="--x:37%; --y:0%;  --s:27%; --r:5deg;  --d:-6.5s" src="icons/miralo.webp"  alt="">
           <img class="ico" style="--x:70%; --y:8%;  --s:27%; --r:8deg;  --d:-3.5s" src="icons/sudoku.webp"  alt="">
-          <img class="ico" style="--x:30%; --y:40%; --s:32%; --r:3deg;  --d:-2s"   src="icons/novaday.webp" alt="">
+          <img class="ico" style="--x:32%; --y:33%; --s:31%; --r:3deg;  --d:-2s"   src="icons/novaday.webp" alt="">
           <img class="ico" style="--x:2%;  --y:64%; --s:26%; --r:7deg;  --d:-4.5s" src="icons/odak.webp"    alt="">
           <img class="ico" style="--x:66%; --y:55%; --s:29%; --r:-6deg; --d:-5.5s" src="icons/unitfab.webp" alt="">
+          <img class="ico" style="--x:36%; --y:70%; --s:25%; --r:-4deg; --d:-3s"   src="icons/collagist.webp" alt="">
         </div>
       </section>
 
       <section id="apps">
-        <div class="sec-head"><h2 data-i18n="apps.title">Apps</h2><span class="count">6</span></div>
+        <div class="sec-head"><h2 data-i18n="apps.title">Apps</h2><span class="count">7</span></div>
 
         <div class="grid">
           <article class="app rise" style="--accent:#2fa9e0; --i:4">
@@ -409,6 +413,16 @@
               </div>
             </div>
           </article>
+          <article class="app rise" style="--accent:#6f737c; --i:10">
+            <img class="app-icon" src="icons/collagist.webp" width="108" height="108" alt="Collagist icon" data-app="Collagist">
+            <div class="body">
+              <h3>Collagist<span class="sr">: </span><span class="sub" data-i18n="collagist.sub">4-Cut Photo Collage</span></h3>
+              <p data-i18n="collagist.desc">Seamless carousel slides, retro photo strips and scrapbook collages. Offline, no watermark.</p>
+              <div class="stores">
+                <a class="store" href="https://play.google.com/store/apps/details?id=com.collagist.app" aria-label="Collagist on Google Play" data-app="Collagist" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -454,6 +468,8 @@
         'unitfab.desc': 'Atölyeler ve el emeği ürünler için maliyet, fiyatlandırma ve stok takibi.',
         'miralo.sub': 'Vizyon Panosu & Kolaj',
         'miralo.desc': 'Fotoğraf kolajları ve vizyon panoları oluştur, duvar kâğıdı ya da widget olarak kullan.',
+        'collagist.sub': '4 Kare Foto Kolaj',
+        'collagist.desc': 'Kesintisiz carousel dilimleri, retro fotoğraf şeritleri ve scrapbook kolajları. Çevrimdışı, filigransız.',
         'contact.title': 'Soru, destek ya da geri bildirim?',
         'contact.text': 'Bana yazın, yardımcı olmaktan memnuniyet duyarım.',
         'footer.legal': "App Store, Apple Inc.'in hizmet markasıdır. Google Play, Google LLC'nin ticari markasıdır. Sirin Apps, Apple veya Google ile bağlantılı değildir ve bunlar tarafından onaylanmamıştır."
