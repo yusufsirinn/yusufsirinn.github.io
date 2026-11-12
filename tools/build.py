@@ -141,6 +141,7 @@ APPS = [
 ]
 
 E = html.escape
+MARK = '<svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#15191f"/><path d="M43 22c0-8-22-8-22 3 0 11 22 5 22 17 0 11-22 10-22 1" fill="none" stroke="#fbfaf8" stroke-width="6.5" stroke-linecap="round"/><circle cx="51" cy="11.5" r="3.8" fill="#f0a27f"/></svg>'
 
 # ───────────── Çizgi simgeler ve motifler ─────────────
 def sym(id_, vb, body):
@@ -168,7 +169,7 @@ ICONS = {
 PATTERNS = {
   "p-shapio": '<circle cx="34" cy="36" r="15"/><path d="M82 20l22 38H60z"/><rect x="40" y="76" width="36" height="30" rx="8"/><path d="M34 51v25M70 58l-12 18" stroke-dasharray="3 6"/>',
   "p-sudoku": '<rect x="18" y="18" width="84" height="84" rx="10"/><path d="M46 18v84M74 18v84M18 46h84M18 74h84"/><circle cx="60" cy="60" r="9"/>',
-  "p-novaday": '<rect x="16" y="26" width="88" height="78" rx="12"/><path d="M16 48h88M40 16v20M80 16v20"/><circle cx="72" cy="78" r="9"/><path d="M34 70h.01M48 70h.01M34 86h.01M48 86h.01M58 70h.01"/>',
+  "p-novaday": '<path d="M104 80V44a18 18 0 0 0-18-18H34a18 18 0 0 0-18 18v42a18 18 0 0 0 18 18h38"/><path d="M104 80H90a10 10 0 0 0-10 10v14M104 80L80 104"/><path d="M42 18v16M78 18v16"/><circle cx="52" cy="54" r="7.5"/><circle cx="52" cy="76" r="10.5"/><path d="M92 50c0-8 4-13 12-14 0 8-4 13-12 14zM92 50v-8"/>',
   "p-odak": '<circle cx="60" cy="60" r="44"/><circle cx="60" cy="60" r="30" stroke-dasharray="2 7"/><path d="M60 60V34M60 60l20 12M60 12v8M60 100v8M12 60h8M100 60h8"/>',
   "p-unitfab": '<path d="M60 14l42 21v50L60 106 18 85V35zM18 35l42 21 42-21M60 56v50"/><path d="M38 24l42 21" stroke-dasharray="3 6"/>',
   "p-miralo": '<rect x="14" y="22" width="48" height="38" rx="8"/><rect x="70" y="14" width="36" height="54" rx="8"/><rect x="22" y="68" width="32" height="34" rx="8"/><rect x="62" y="76" width="44" height="26" rx="8"/><circle cx="38" cy="41" r="6"/>',
@@ -289,7 +290,7 @@ def page(app):
 
   <div class="wrap">
     <header class="top">
-      <a class="brand" href="../" aria-label="Sirin Apps"><span class="mark" aria-hidden="true">S</span>Sirin Apps</a>
+      <a class="brand" href="../" aria-label="Sirin Apps"><span class="mark" aria-hidden="true">{MARK}</span>Sirin Apps</a>
       <div class="top-actions">
         <div class="lang" role="group" aria-label="Language">
           <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>

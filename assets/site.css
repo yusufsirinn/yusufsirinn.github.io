@@ -76,12 +76,9 @@
     /* ───── Üst şerit ───── */
     .top { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
     .brand { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; font-weight: 700; font-size: 1.12rem; letter-spacing: -.01em; }
-    .mark {
-      width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center;
-      color: #fff; font-weight: 700; font-size: 1.3rem; line-height: 1;
-      background: linear-gradient(135deg, #2fa9e0, #e05cb4);
-      box-shadow: 0 6px 16px -4px rgba(47, 169, 224, .55);
-    }
+.mark { width: 38px; height: 38px; flex: none; display: block; }
+.mark svg { display: block; width: 100%; height: 100%; border-radius: 22%; box-shadow: 0 0 0 1px rgba(255, 255, 255, .12); }
+@media (prefers-color-scheme: light) { .mark svg { box-shadow: 0 0 0 1px rgba(21, 25, 31, .08); } }
 
     .top-actions { display: flex; align-items: center; gap: 10px; }
 
