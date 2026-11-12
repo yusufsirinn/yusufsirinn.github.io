@@ -8,301 +8,51 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0c0f14" media="(prefers-color-scheme: dark)">
-  <!-- Sayfa yalnızca Google Play kuruluş doğrulaması için var: adresi bilen
-       açabilir, arama motorları listelemez. Search Console doğrulaması
-       noindex'ten etkilenmez. -->
-  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://yusufsirinn.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sirin Apps">
+  <meta property="og:title" content="Sirin Apps">
+  <meta property="og:description" content="Sirin Apps — independent mobile apps and games by Yusuf Şirin.">
+  <meta property="og:url" content="https://yusufsirinn.github.io/">
+  <meta property="og:image" content="https://yusufsirinn.github.io/icons/shapio.webp">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Sirin Apps","url":"https://yusufsirinn.github.io/","founder":{"@type":"Person","name":"Yusuf Şirin"}}</script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232fa9e0'/%3E%3Cstop offset='1' stop-color='%23e05cb4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Ctext x='32' y='46' font-family='Helvetica,Arial,sans-serif' font-size='38' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
   <link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  <style>
-    @font-face {
-      font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 400 800; font-display: swap;
-      src: url(fonts/bricolage-latin-ext.woff2) format("woff2");
-      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-    }
-    @font-face {
-      font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 400 800; font-display: swap;
-      src: url(fonts/bricolage-latin.woff2) format("woff2");
-      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-    }
-
-    :root {
-      color-scheme: light dark;
-      --bg: #fbfaf8;
-      --card: #ffffff;
-      --ink: #15191f;
-      --soft: #5d6673;
-      --line: rgba(21, 25, 31, .09);
-      --dot: rgba(21, 25, 31, .13);
-      --glow-a: rgba(47, 169, 224, .24);
-      --glow-b: rgba(240, 162, 127, .28);
-      --glow-c: rgba(224, 92, 180, .13);
-      --shadow: 21 25 31;
-      --radius: 28px;
-      --font: "Bricolage Grotesque", ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0c0f14;
-        --card: #141922;
-        --ink: #f1f4f8;
-        --soft: #98a3b2;
-        --line: rgba(255, 255, 255, .09);
-        --dot: rgba(255, 255, 255, .11);
-        --glow-a: rgba(47, 169, 224, .22);
-        --glow-b: rgba(240, 162, 127, .14);
-        --glow-c: rgba(224, 92, 180, .16);
-        --shadow: 0 0 0;
-      }
-    }
-
-    * { box-sizing: border-box; margin: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-    body {
-      position: relative;
-      overflow-x: hidden;
-      background: var(--bg);
-      color: var(--ink);
-      font: 400 17px/1.55 var(--font);
-      -webkit-font-smoothing: antialiased;
-    }
-    /* Arka plan: üstte renkli ışıma + silikleşen nokta ızgarası */
-    body::before {
-      content: ""; position: absolute; inset: 0 0 auto 0; height: 980px; z-index: -1; pointer-events: none;
-      background:
-        radial-gradient(56rem 36rem at 88% -8%, var(--glow-a), transparent 62%),
-        radial-gradient(48rem 34rem at -8% 6%, var(--glow-b), transparent 62%),
-        radial-gradient(40rem 28rem at 62% 70%, var(--glow-c), transparent 62%);
-    }
-    body::after {
-      content: ""; position: absolute; inset: 0 0 auto 0; height: 760px; z-index: -1; pointer-events: none;
-      background-image: radial-gradient(var(--dot) 1.2px, transparent 1.4px);
-      background-size: 24px 24px;
-      -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
-              mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
-    }
-
-    .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
-    a { color: inherit; text-decoration: none; }
-    :focus-visible { outline: 3px solid #2fa9e0; outline-offset: 3px; border-radius: 12px; }
-    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-    svg.i { width: 1.15em; height: 1.15em; flex: none; fill: currentColor; }
-
-    /* ───── Üst şerit ───── */
-    .top { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
-    .brand { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; font-weight: 700; font-size: 1.12rem; letter-spacing: -.01em; }
-    .mark {
-      width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center;
-      color: #fff; font-weight: 800; font-size: 1.3rem; line-height: 1;
-      background: linear-gradient(135deg, #2fa9e0, #e05cb4);
-      box-shadow: 0 6px 16px -4px rgba(47, 169, 224, .55);
-    }
-
-    .top-actions { display: flex; align-items: center; gap: 10px; }
-
-    /* ───── Dil anahtarı ───── */
-    .lang {
-      position: relative; display: inline-grid; grid-template-columns: 1fr 1fr;
-      padding: 3px; border-radius: 999px; background: var(--card); border: 1px solid var(--line);
-    }
-    .lang::before {
-      content: ""; position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px);
-      border-radius: 999px; background: var(--ink);
-      transition: transform .3s cubic-bezier(.3, 1.3, .5, 1);
-    }
-    html[data-lang="tr"] .lang::before { transform: translateX(100%); }
-    .lang button {
-      position: relative; z-index: 1; min-width: 42px; padding: 7px 12px;
-      border: 0; border-radius: 999px; background: none; cursor: pointer;
-      font: 700 .8rem/1 var(--font); letter-spacing: .06em; color: var(--soft);
-      transition: color .25s ease;
-    }
-    .lang button[aria-pressed="true"] { color: var(--bg); }
-    .lang button:not([aria-pressed="true"]):hover { color: var(--ink); }
-
-    /* ───── Düğmeler ───── */
-    .btn {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: .98rem;
-      border: 1px solid transparent; cursor: pointer;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn.primary { background: var(--ink); color: var(--bg); box-shadow: 0 10px 24px -10px rgb(var(--shadow) / .55); }
-    .btn.ghost { background: var(--card); border-color: var(--line); }
-    .btn.ghost:hover { box-shadow: 0 10px 24px -12px rgb(var(--shadow) / .35); }
-    .btn.small { padding: 9px 18px; font-size: .92rem; }
-
-    /* ───── Hero ───── */
-    .hero { display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 40px; padding: 48px 0 88px; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px 7px 12px; border-radius: 999px;
-      background: var(--card); border: 1px solid var(--line);
-      font-size: .88rem; font-weight: 600; color: var(--soft);
-    }
-    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #36c98b; box-shadow: 0 0 0 4px rgba(54, 201, 139, .2); }
-    h1 {
-      margin-top: 22px;
-      font-size: clamp(2.7rem, 6.4vw, 4.7rem); font-weight: 800; line-height: 1.01; letter-spacing: -.038em;
-      text-wrap: balance;
-    }
-    h1 > span:first-child { display: block; }
-    html[lang="tr"] h1 { font-size: clamp(2.3rem, 5.2vw, 3.8rem); }
-    .grad {
-      background: linear-gradient(100deg, #2fa9e0 0%, #b865d6 52%, #f08a5d 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .lead { margin-top: 22px; max-width: 34em; font-size: 1.2rem; line-height: 1.5; color: var(--soft); text-wrap: pretty; }
-    .cta { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
-
-    /* Dağınık ikon kümesi */
-    .cluster { position: relative; width: min(100%, 460px); aspect-ratio: 1 / .96; margin-inline: auto; }
-    .cluster::before {
-      content: ""; position: absolute; inset: 6% 4%; border-radius: 50%; filter: blur(46px); opacity: .55;
-      background: conic-gradient(from 210deg, #2fa9e0, #e05cb4, #f7c9b0, #ffd36b, #2fa9e0);
-    }
-    .ico {
-      position: absolute; left: var(--x); top: var(--y); width: var(--s); aspect-ratio: 1;
-      border-radius: 22.37%; display: block;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .07), 0 22px 40px -14px rgb(var(--shadow) / .5);
-      transform: rotate(var(--r));
-      animation: float 7s ease-in-out var(--d, 0s) infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(var(--r)); }
-      50%      { transform: translateY(-12px) rotate(calc(var(--r) + 2deg)); }
-    }
-
-    /* ───── Bölüm başlığı ───── */
-    section { scroll-margin-top: 16px; }
-    .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 26px; }
-    h2 { font-size: clamp(1.8rem, 3.6vw, 2.4rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
-    .count {
-      font-size: .9rem; font-weight: 700; color: var(--soft); padding: 2px 11px; border-radius: 999px;
-      background: var(--card); border: 1px solid var(--line);
-    }
-
-    /* ───── Uygulama kartları (bento) ───── */
-    .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
-    .app {
-      --accent: #2fa9e0;
-      grid-column: span 3;
-    }
-    .app:last-child:nth-child(odd) { grid-column: 1 / -1; }
-    .app {
-      position: relative; overflow: hidden; isolation: isolate;
-      display: flex; flex-direction: column; gap: 18px;
-      padding: 26px; border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid var(--line);
-      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-    }
-    @supports (background: color-mix(in srgb, red 10%, blue)) {
-      .app {
-        background: linear-gradient(155deg, color-mix(in srgb, var(--accent) 17%, var(--card)), var(--card) 68%);
-        border-color: color-mix(in srgb, var(--accent) 24%, var(--line));
-      }
-      .app::before { background: radial-gradient(circle, color-mix(in srgb, var(--accent) 42%, transparent), transparent 66%); }
-    }
-    .app::before {
-      content: ""; position: absolute; z-index: -1; width: 78%; aspect-ratio: 1; right: -24%; top: -34%;
-      background: radial-gradient(circle, rgba(47, 169, 224, .3), transparent 66%);
-      opacity: .55; transition: opacity .4s ease, transform .5s ease;
-    }
-    .app:hover { transform: translateY(-5px); box-shadow: 0 28px 50px -26px rgb(var(--shadow) / .5); }
-    .app:hover::before { opacity: 1; transform: scale(1.12); }
-
-    .app-icon {
-      width: 108px; height: 108px; border-radius: 22.37%; flex: none; display: block;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .07), 0 14px 26px -12px rgb(var(--shadow) / .55);
-      transition: transform .35s cubic-bezier(.3, 1.6, .5, 1);
-    }
-    .app:hover .app-icon { transform: rotate(-4deg) scale(1.06); }
-
-    .app h3 { font-size: 1.55rem; font-weight: 800; letter-spacing: -.028em; line-height: 1.12; }
-    .app h3 .sub { display: block; margin-top: 4px; font-size: 1rem; font-weight: 500; letter-spacing: -.005em; color: var(--soft); }
-    .app p { color: var(--soft); font-size: 1rem; line-height: 1.5; text-wrap: pretty; }
-    .stores { margin-top: auto; padding-top: 4px; display: flex; flex-wrap: wrap; gap: 10px; }
-    .store {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 11px 15px 11px 19px; border-radius: 999px;
-      background: var(--ink); color: var(--bg); font-weight: 600; font-size: .94rem; line-height: 1;
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-    .store:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgb(var(--shadow) / .6); }
-    .store svg.i { width: 1.15em; height: 1.15em; opacity: .7; transition: transform .18s ease, opacity .18s ease; }
-    .store:hover svg.i { transform: translate(2px, -2px); opacity: 1; }
-
-    .app .body { display: flex; flex-direction: column; gap: 12px; }
-    @media (min-width: 900px) {
-      .app { flex-direction: row; align-items: flex-start; gap: 24px; }
-      .app .body { flex: 1; align-self: stretch; }
-    }
-
-    /* ───── İletişim ───── */
-    #contact { padding: 88px 0 72px; }
-    .contact {
-      position: relative; overflow: hidden; isolation: isolate;
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;
-      padding: 38px; border-radius: 34px; background: var(--ink); color: var(--bg);
-    }
-    .contact::before {
-      content: ""; position: absolute; z-index: -1; inset: -40% -10% auto auto; width: 60%; aspect-ratio: 1;
-      background: radial-gradient(circle, rgba(47, 169, 224, .55), transparent 62%);
-    }
-    .contact::after {
-      content: ""; position: absolute; z-index: -1; inset: auto auto -50% -8%; width: 50%; aspect-ratio: 1;
-      background: radial-gradient(circle, rgba(224, 92, 180, .4), transparent 62%);
-    }
-    .contact h2 { font-size: clamp(1.6rem, 3.2vw, 2.1rem); }
-    .contact p { margin-top: 8px; opacity: .72; }
-    .contact .btn { background: var(--bg); color: var(--ink); }
-
-    footer .legal { margin-top: 6px; font-size: .82rem; opacity: .8; max-width: 52em; }
-    footer { padding: 26px 0 44px; border-top: 1px solid var(--line); color: var(--soft); font-size: .92rem; }
-
-    /* ───── Dil değişim geçişi ───── */
-    main, footer { transition: opacity .14s ease; }
-    html.switching main, html.switching footer { opacity: 0; }
-
-    /* ───── Açılış animasyonu ───── */
-    @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
-    .rise { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i, 0) * 80ms); }
-
-    /* ───── Küçük ekranlar ───── */
-    @media (max-width: 899px) {
-      .hero { grid-template-columns: 1fr; gap: 28px; padding: 28px 0 64px; }
-      .cluster { width: min(100%, 380px); }
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      .app { grid-column: span 1; }
-      .app:last-child:nth-child(odd) { grid-column: 1 / -1; }
-    }
-    @media (max-width: 599px) {
-      body { font-size: 16px; }
-      .grid { grid-template-columns: 1fr; }
-      .app:last-child:nth-child(odd) { grid-column: auto; }
-      .app { padding: 22px; }
-      .contact { padding: 28px 24px; border-radius: 28px; }
-      .top-actions { gap: 8px; }
-      .lang button { min-width: 38px; padding: 7px 10px; }
-      #contact { padding: 64px 0 52px; }
-    }
-    @media (max-width: 380px) {
-      .top-actions .btn { display: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .ico, .rise { animation: none; }
-      .app, .app::before, .app-icon, .btn, .store, .lang::before, main, footer { transition: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+  <!--sprite-->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M8 6h10v10h-2V9.41l-9.3 9.3-1.42-1.42L14.59 8H8V6z"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2 7.4 5.6L19.4 7H4.6z"/></symbol>
+    <symbol id="i-trace" viewBox="0 0 24 24"><path d="M4 19c3-6 6-2 8-7s5-6 8-7"/><circle cx="20" cy="5" r="1.6"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 9.3h16M4 14.7h16M9.3 4v16M14.7 4v16"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-levels" viewBox="0 0 24 24"><path d="M5 20v-6M12 20V9M19 20V4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-widget" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3.5"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.5-1.9-.3-1 .4-2.1 1.5-2.1H17a4 4 0 0 0 4-4c0-5-4-10-9-10z"/><path d="M7.5 11h.01M10 7.5h.01M14.5 7.5h.01"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15zM10 21h4"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3l8 4v10l-8 4-8-4V7zM4 7l8 4 8-4M12 11v10"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 9"/></symbol>
+    <symbol id="i-slides" viewBox="0 0 24 24"><rect x="3" y="6" width="9" height="12" rx="2"/><rect x="12" y="6" width="9" height="12" rx="2"/></symbol>
+    <symbol id="i-strip" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M7 8h10M7 12.5h10M7 17h10"/></symbol>
+    <symbol id="p-shapio" viewBox="0 0 120 120"><circle cx="34" cy="36" r="15"/><path d="M82 20l22 38H60z"/><rect x="40" y="76" width="36" height="30" rx="8"/><path d="M34 51v25M70 58l-12 18" stroke-dasharray="3 6"/></symbol>
+    <symbol id="p-sudoku" viewBox="0 0 120 120"><rect x="18" y="18" width="84" height="84" rx="10"/><path d="M46 18v84M74 18v84M18 46h84M18 74h84"/><circle cx="60" cy="60" r="9"/></symbol>
+    <symbol id="p-novaday" viewBox="0 0 120 120"><rect x="16" y="26" width="88" height="78" rx="12"/><path d="M16 48h88M40 16v20M80 16v20"/><circle cx="72" cy="78" r="9"/><path d="M34 70h.01M48 70h.01M34 86h.01M48 86h.01M58 70h.01"/></symbol>
+    <symbol id="p-odak" viewBox="0 0 120 120"><circle cx="60" cy="60" r="44"/><circle cx="60" cy="60" r="30" stroke-dasharray="2 7"/><path d="M60 60V34M60 60l20 12M60 12v8M60 100v8M12 60h8M100 60h8"/></symbol>
+    <symbol id="p-unitfab" viewBox="0 0 120 120"><path d="M60 14l42 21v50L60 106 18 85V35zM18 35l42 21 42-21M60 56v50"/><path d="M38 24l42 21" stroke-dasharray="3 6"/></symbol>
+    <symbol id="p-miralo" viewBox="0 0 120 120"><rect x="14" y="22" width="48" height="38" rx="8"/><rect x="70" y="14" width="36" height="54" rx="8"/><rect x="22" y="68" width="32" height="34" rx="8"/><rect x="62" y="76" width="44" height="26" rx="8"/><circle cx="38" cy="41" r="6"/></symbol>
+    <symbol id="p-collagist" viewBox="0 0 120 120"><rect x="38" y="8" width="44" height="104" rx="8"/><rect x="46" y="16" width="28" height="20" rx="4"/><rect x="46" y="42" width="28" height="20" rx="4"/><rect x="46" y="68" width="28" height="20" rx="4"/><rect x="46" y="94" width="28" height="12" rx="4"/></symbol>
   </svg>
+  <!--/sprite-->
 
   <div class="wrap">
     <header class="top">
@@ -319,7 +69,11 @@
     <main id="top">
       <section class="hero">
         <div>
-          <p class="eyebrow rise" style="--i:0" data-i18n="hero.eyebrow">Puzzles · Timers · Everyday tools</p>
+          <p class="eyebrow rise" style="--i:0">
+            <span class="tag" style="--c:#2fa9e0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v1h4a1 1 0 0 1 1 1v4h-1a2 2 0 1 0 0 4h1v4a1 1 0 0 1-1 1h-4v-1a2 2 0 1 0-4 0v1H6a1 1 0 0 1-1-1v-4h1a2 2 0 1 0 0-4H5V6a1 1 0 0 1 1-1h4V4z"/></svg><span data-i18n="hero.t1">Puzzles</span></span>
+            <span class="tag" style="--c:#e05cb4"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3.5"/></svg><span data-i18n="hero.t2">Timers</span></span>
+            <span class="tag" style="--c:#f08a5d"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></svg><span data-i18n="hero.t3">Everyday tools</span></span>
+          </p>
           <h1 class="rise" style="--i:1"><span data-i18n="hero.h1a">Thoughtfully designed apps</span> <span class="grad" data-i18n="hero.h1b">for everyday life.</span></h1>
           <p class="lead rise" style="--i:2" data-i18n="hero.lead">Independent mobile apps and games, designed and built by Yusuf Şirin.</p>
           <div class="cta rise" style="--i:3">
@@ -329,6 +83,13 @@
         </div>
 
         <div class="cluster rise" style="--i:2" aria-hidden="true">
+          <svg class="deco" viewBox="0 0 460 441">
+            <circle cx="230" cy="222" r="206" stroke-dasharray="2 9"/>
+            <circle cx="230" cy="222" r="150" stroke-dasharray="2 9" opacity=".6"/>
+            <path d="M14 12v12M8 18h12M440 292v12M434 298h12M196 424v12M190 430h12"/>
+            <g transform="translate(386 176) scale(1.5)"><path d="M10 4a2 2 0 1 1 4 0v1h4a1 1 0 0 1 1 1v4h-1a2 2 0 1 0 0 4h1v4a1 1 0 0 1-1 1h-4v-1a2 2 0 1 0-4 0v1H6a1 1 0 0 1-1-1v-4h1a2 2 0 1 0 0-4H5V6a1 1 0 0 1 1-1h4V4z" transform="scale(.9)"/></g>
+            <g transform="translate(4 206) scale(1.5)"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5v3.5"/></g>
+          </svg>
           <img class="ico" style="--x:3%;  --y:10%; --s:31%; --r:-8deg; --d:-1s"   src="icons/shapio.webp"  alt="">
           <img class="ico" style="--x:37%; --y:0%;  --s:27%; --r:5deg;  --d:-6.5s" src="icons/miralo.webp"  alt="">
           <img class="ico" style="--x:70%; --y:8%;  --s:27%; --r:8deg;  --d:-3.5s" src="icons/sudoku.webp"  alt="">
@@ -343,86 +104,103 @@
         <div class="sec-head"><h2 data-i18n="apps.title">Apps</h2><span class="count">7</span></div>
 
         <div class="grid">
+          <!--cards-->
           <article class="app rise" style="--accent:#2fa9e0; --i:4">
-            <img class="app-icon" src="icons/shapio.webp" width="108" height="108" alt="Shapio icon" data-app="Shapio">
+            <svg class="pat" aria-hidden="true"><use href="#p-shapio"/></svg>
+            <a href="shapio/" tabindex="-1" aria-hidden="true"><img class="app-icon" src="icons/shapio.webp" width="108" height="108" alt="Shapio icon" data-app="Shapio"></a>
             <div class="body">
               <h3>Shapio<span class="sr">: </span><span class="sub" data-i18n="shapio.sub">Pattern Logic Puzzle</span></h3>
               <p data-i18n="shapio.desc">Find the hidden row of shapes on the board and trace it in one line.</p>
               <div class="stores">
-                <a class="store" href="https://apps.apple.com/app/id6803520460" aria-label="Shapio on the App Store" data-app="Shapio" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="store" href="https://apps.apple.com/app/id6803520460" aria-label="Shapio on App Store" data-app="Shapio" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 <a class="store" href="https://play.google.com/store/apps/details?id=com.shapio.app" aria-label="Shapio on Google Play" data-app="Shapio" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="more" href="shapio/" data-more="Shapio"><span data-i18n="card.more">Details</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
           </article>
 
           <article class="app rise" style="--accent:#f5c518; --i:5">
-            <img class="app-icon" src="icons/sudoku.webp" width="108" height="108" alt="Sudoku icon" data-app="Sudoku">
+            <svg class="pat" aria-hidden="true"><use href="#p-sudoku"/></svg>
+            <a href="sudoku/" tabindex="-1" aria-hidden="true"><img class="app-icon" src="icons/sudoku.webp" width="108" height="108" alt="Sudoku icon" data-app="Sudoku"></a>
             <div class="body">
               <h3>Sudoku<span class="sr">: </span><span class="sub" data-i18n="sudoku.sub">Hints &amp; Number Logic</span></h3>
               <p data-i18n="sudoku.desc">Classic sudoku with hints that teach the logic behind each move.</p>
               <div class="stores">
-                <a class="store" href="https://apps.apple.com/app/id6769049219" aria-label="Sudoku on the App Store" data-app="Sudoku" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="store" href="https://apps.apple.com/app/id6769049219" aria-label="Sudoku on App Store" data-app="Sudoku" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 <a class="store" href="https://play.google.com/store/apps/details?id=com.minimalsudoku.app" aria-label="Sudoku on Google Play" data-app="Sudoku" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="more" href="sudoku/" data-more="Sudoku"><span data-i18n="card.more">Details</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
           </article>
 
           <article class="app rise" style="--accent:#f0a27f; --i:6">
-            <img class="app-icon" src="icons/novaday.webp" width="108" height="108" alt="Novaday icon" data-app="Novaday">
+            <svg class="pat" aria-hidden="true"><use href="#p-novaday"/></svg>
+            <a href="novaday/" tabindex="-1" aria-hidden="true"><img class="app-icon" src="icons/novaday.webp" width="108" height="108" alt="Novaday icon" data-app="Novaday"></a>
             <div class="body">
               <h3>Novaday<span class="sr">: </span><span class="sub" data-i18n="novaday.sub">Countdown Days Until</span></h3>
               <p data-i18n="novaday.desc">Count down the days to the moments that matter.</p>
               <div class="stores">
-                <a class="store" href="https://apps.apple.com/app/id6791479855" aria-label="Novaday on the App Store" data-app="Novaday" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="store" href="https://apps.apple.com/app/id6791479855" aria-label="Novaday on App Store" data-app="Novaday" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 <a class="store" href="https://play.google.com/store/apps/details?id=app.gungun" aria-label="Novaday on Google Play" data-app="Novaday" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="more" href="novaday/" data-more="Novaday"><span data-i18n="card.more">Details</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
           </article>
 
           <article class="app rise" style="--accent:#8f96b8; --i:7">
-            <img class="app-icon" src="icons/odak.webp" width="108" height="108" alt="Odak icon" data-app="Odak">
+            <svg class="pat" aria-hidden="true"><use href="#p-odak"/></svg>
+            <a href="odak/" tabindex="-1" aria-hidden="true"><img class="app-icon" src="icons/odak.webp" width="108" height="108" alt="Odak icon" data-app="Odak"></a>
             <div class="body">
               <h3>Odak<span class="sr">: </span><span class="sub" data-i18n="odak.sub">Flip Clock</span></h3>
               <p data-i18n="odak.desc">A calm full-screen flip clock and focus timer.</p>
               <div class="stores">
-                <a class="store" href="https://apps.apple.com/app/id6771885024" aria-label="Odak on the App Store" data-app="Odak" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="store" href="https://apps.apple.com/app/id6771885024" aria-label="Odak on App Store" data-app="Odak" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 <a class="store" href="https://play.google.com/store/apps/details?id=com.odakapp.timer" aria-label="Odak on Google Play" data-app="Odak" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="more" href="odak/" data-more="Odak"><span data-i18n="card.more">Details</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
           </article>
 
           <article class="app rise" style="--accent:#c59a6a; --i:8">
-            <img class="app-icon" src="icons/unitfab.webp" width="108" height="108" alt="UnitFab icon" data-app="UnitFab">
+            <svg class="pat" aria-hidden="true"><use href="#p-unitfab"/></svg>
+            <a href="unitfab/" tabindex="-1" aria-hidden="true"><img class="app-icon" src="icons/unitfab.webp" width="108" height="108" alt="UnitFab icon" data-app="UnitFab"></a>
             <div class="body">
               <h3>UnitFab<span class="sr">: </span><span class="sub" data-i18n="unitfab.sub">Craft Cost Calculator</span></h3>
               <p data-i18n="unitfab.desc">Cost, pricing and stock tracking for craft workshops.</p>
               <div class="stores">
-                <a class="store" href="https://apps.apple.com/app/id6766839274" aria-label="UnitFab on the App Store" data-app="UnitFab" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="store" href="https://apps.apple.com/app/id6766839274" aria-label="UnitFab on App Store" data-app="UnitFab" data-store="appstore">App Store<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 <a class="store" href="https://play.google.com/store/apps/details?id=com.unitfab.app" aria-label="UnitFab on Google Play" data-app="UnitFab" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="more" href="unitfab/" data-more="UnitFab"><span data-i18n="card.more">Details</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
           </article>
 
           <article class="app rise" style="--accent:#35b6a4; --i:9">
-            <img class="app-icon" src="icons/miralo.webp" width="108" height="108" alt="Miralo icon" data-app="Miralo">
+            <svg class="pat" aria-hidden="true"><use href="#p-miralo"/></svg>
+            <a href="miralo/" tabindex="-1" aria-hidden="true"><img class="app-icon" src="icons/miralo.webp" width="108" height="108" alt="Miralo icon" data-app="Miralo"></a>
             <div class="body">
               <h3>Miralo<span class="sr">: </span><span class="sub" data-i18n="miralo.sub">Vision Board Maker</span></h3>
               <p data-i18n="miralo.desc">Create photo collages and vision boards, then use them as a wallpaper or widget.</p>
               <div class="stores">
                 <a class="store" href="https://play.google.com/store/apps/details?id=com.miralo.app" aria-label="Miralo on Google Play" data-app="Miralo" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="more" href="miralo/" data-more="Miralo"><span data-i18n="card.more">Details</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
           </article>
+
           <article class="app rise" style="--accent:#6f737c; --i:10">
-            <img class="app-icon" src="icons/collagist.webp" width="108" height="108" alt="Collagist icon" data-app="Collagist">
+            <svg class="pat" aria-hidden="true"><use href="#p-collagist"/></svg>
+            <a href="collagist/" tabindex="-1" aria-hidden="true"><img class="app-icon" src="icons/collagist.webp" width="108" height="108" alt="Collagist icon" data-app="Collagist"></a>
             <div class="body">
               <h3>Collagist<span class="sr">: </span><span class="sub" data-i18n="collagist.sub">4-Cut Photo Collage</span></h3>
               <p data-i18n="collagist.desc">Seamless carousel slides, retro photo strips and scrapbook collages.</p>
               <div class="stores">
                 <a class="store" href="https://play.google.com/store/apps/details?id=com.collagist.app" aria-label="Collagist on Google Play" data-app="Collagist" data-store="play">Google Play<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="more" href="collagist/" data-more="Collagist"><span data-i18n="card.more">Details</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
           </article>
+          <!--/cards-->
         </div>
       </section>
 
@@ -443,13 +221,12 @@
     </footer>
   </div>
   <script>
-    (function () {
-      var root = document.documentElement;
-      var STORAGE_KEY = 'sirin-lang';
-
-      var tr = {
+    window.SIRIN_TR = {
         'nav.contact': 'İletişim',
-        'hero.eyebrow': 'Bulmacalar · Zamanlayıcılar · Günlük araçlar',
+        'card.more': 'Ayrıntılar',
+        'hero.t1': 'Bulmacalar',
+        'hero.t2': 'Zamanlayıcılar',
+        'hero.t3': 'Günlük araçlar',
         'hero.h1a': 'Gündelik hayat için',
         'hero.h1b': 'özenle tasarlanmış uygulamalar.',
         'hero.lead': 'Yusuf Şirin tarafından tasarlanıp geliştirilen bağımsız mobil uygulamalar ve oyunlar.',
@@ -474,64 +251,13 @@
         'contact.text': 'Bana yazın, yardımcı olmaktan memnuniyet duyarım.',
         'footer.legal': "App Store, Apple Inc.'in hizmet markasıdır. Google Play, Google LLC'nin ticari markasıdır. Sirin Apps, Apple veya Google ile bağlantılı değildir ve bunlar tarafından onaylanmamıştır."
       };
-      var aria = {
-        en: { appstore: function (n) { return n + ' on the App Store'; }, play: function (n) { return n + ' on Google Play'; }, alt: function (n) { return n + ' icon'; } },
-        tr: { appstore: function (n) { return n + " — App Store'da"; }, play: function (n) { return n + " — Google Play'de"; }, alt: function (n) { return n + ' ikonu'; } }
-      };
-      var metaDesc = {
+    window.SIRIN_META = {
+      desc: {
         en: 'Sirin Apps — independent mobile apps and games by Yusuf Şirin.',
         tr: "Sirin Apps — Yusuf Şirin'in bağımsız mobil uygulamaları ve oyunları."
-      };
-
-      var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-i18n]'));
-      nodes.forEach(function (el) { el.setAttribute('data-en', el.innerHTML); });
-      var desc = document.querySelector('meta[name="description"]');
-      var buttons = Array.prototype.slice.call(document.querySelectorAll('.lang button'));
-
-      function read(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
-      function write(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
-
-      function initial() {
-        var q = /[?&]lang=(en|tr)\b/.exec(location.search);
-        if (q) return q[1];
-        var saved = read(STORAGE_KEY);
-        if (saved === 'en' || saved === 'tr') return saved;
-        var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-        return /^tr\b/i.test(nav) ? 'tr' : 'en';
       }
-
-      function apply(lang) {
-        root.lang = lang;
-        root.setAttribute('data-lang', lang);
-        nodes.forEach(function (el) {
-          var key = el.getAttribute('data-i18n');
-          el.innerHTML = lang === 'tr' && tr[key] ? tr[key] : el.getAttribute('data-en');
-        });
-        document.querySelectorAll('a[data-store]').forEach(function (a) {
-          a.setAttribute('aria-label', aria[lang][a.getAttribute('data-store')](a.getAttribute('data-app')));
-        });
-        document.querySelectorAll('img[data-app]').forEach(function (img) {
-          img.setAttribute('alt', aria[lang].alt(img.getAttribute('data-app')));
-        });
-        if (desc) desc.setAttribute('content', metaDesc[lang]);
-        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
-      }
-
-      function setLang(lang, animate) {
-        if (lang === root.getAttribute('data-lang')) return;
-        write(STORAGE_KEY, lang);
-        try { history.replaceState(null, '', '?lang=' + lang + location.hash); } catch (e) {}
-        var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!animate || reduce) { apply(lang); return; }
-        root.classList.add('switching');
-        setTimeout(function () { apply(lang); root.classList.remove('switching'); }, 150);
-      }
-
-      buttons.forEach(function (b) {
-        b.addEventListener('click', function () { setLang(b.getAttribute('data-lang'), true); });
-      });
-      apply(initial());
-    })();
+    };
   </script>
+  <script src="assets/site.js"></script>
 </body>
 </html>
